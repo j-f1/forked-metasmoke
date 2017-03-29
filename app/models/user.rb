@@ -36,6 +36,13 @@ class User < ApplicationRecord
       # todo
     end
   end
+  
+  def self.is_a?(role)
+    user_signed_in? and current_user.has_role? role
+  end
+  def self.is_an?(role)
+    is_a? role
+  end
 
   def active_for_authentication?
     super && roles.present?
